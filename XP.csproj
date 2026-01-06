@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType> <!-- Change to Exe for DOS prompt -->
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+
+    <PublishAot>true</PublishAot>
+    <SupportWinXP>true</SupportWinXP>
+    <WindowsSupportedOSPlatformVersion>5.1</WindowsSupportedOSPlatformVersion>
+    <TargetPlatformMinVersion>5.1</TargetPlatformMinVersion>
+
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <UseWindowsSdk>false</UseWindowsSdk>
+    <IlcLinkLibs>true</IlcLinkLibs>
+    <IlcVerbose>true</IlcVerbose>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VC-LTL" Version="5.3.1-Beta2" />
+    <PackageReference Include="YY-Thunks" Version="1.1.9" />
+  </ItemGroup>
+  
+  <Target Name="ShowLinkerArgs" AfterTargets="IlcCompile">
+    <Message Importance="high" Text="Linker Args: @(LinkerArg)" />
+  </Target>
+
+  <!-- Debug: Verify YY-Thunks configuration -->
+  <Target Name="DebugYYThunks" AfterTargets="SetupOSSpecificProps">
+    <Message Importance="high" Text="YY-Thunks TargetPlatformMinVersion: $(TargetPlatformMinVersion)" />
+    <Message Importance="high" Text="YY-Thunks Internal_YY_Thunks_File: $(Internal_YY_Thunks_File)" />
+  </Target>
+</Project>
