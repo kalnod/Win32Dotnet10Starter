@@ -5,3 +5,7 @@ A starter project for Win32 applications using .NET 10.
 ## Files
 - Program.cs - Main application
 - build.bat - Build script
+
+## Building
+
+Run `build.bat` to compile the project.
